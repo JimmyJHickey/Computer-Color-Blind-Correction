@@ -17,23 +17,15 @@ img
 
 img2 = load.image('~/Documents/Programming/git/Computer-Color-Blind-Correction/test_data/rgb2.png')
 plot(img2)
-R(img2)
 img2copy = img2
 
 # Display the matricies of each color
-color.at(img)
-channel(img2copy)
-G(img2copy) = 0
-B(img2copy) = 255
-R(img2copy) = 244
+plot(img2copy)
+color.at(img2copy, x = 2, y = 4 ) = c(0, 0 ,255, 0)
+plot(img2copy)
+B(img2copy) = 0.3
 plot(img2copy)
 
 
-
-#### png library
-library(png)
-pimg = readPNG(source = "~/Documents/Programming/git/Computer-Color-Blind-Correction/test_data/rgb1.png")
-dim(pimg)
-pimg
-plot(pimg)
-img3 = load.image(pimg)
+# Data?
+# http://www.colour-blindness.com/colour-blindness-tests/ishihara-colour-test-plates/
