@@ -2,12 +2,12 @@ import cv2
 import csv
 
 # open image
-img = cv2.imread('../img_data/data2.png')
+img = cv2.imread('../img_data/Ishihara.png')
 width = img.shape[0]
 height = img.shape[1]
 
 # write to CSV
-with open("../img_data/data2.csv", 'w', newline='') as csv_file:
+with open("../img_data/Ishihara.csv", 'w', newline='') as csv_file:
     writer = csv.writer(csv_file, delimiter=',')
     writer.writerow(['x', 'y', 'B', 'G', 'R'])
     for i in range(width):
