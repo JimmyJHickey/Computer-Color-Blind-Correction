@@ -85,6 +85,7 @@ A system can be trained to identify and resolve areas of potential color blind c
 \section{Methods}
 
 \subsection{Data Creation}
+\subsubsection{Image Creation}
 Initially, it was planned to use standard Ishihara Color Test plates, such as those used by eye doctors, as the data for this experiment. See figure \ref{fig:ishi} for an example.
 
 \begin{figure}[h]
@@ -98,11 +99,11 @@ Initially, it was planned to use standard Ishihara Color Test plates, such as th
 
 However, this afforded little control of the data. The learning process would rely on only the Ishihara samples publicly available online. 
 
-Instead of this, new data was generated for the sake of this experiment. This allows for a wider range of data to be created and manipulated to help the system learn more color combinations. The data created using Adobe Illustrator. A background was chosen and then a foreground image was drawn. The colors of the background and foreground were tweaked until a red-green color blind person started having trouble distinguishing between the two. Figure \ref{fig:data1} shows a pink boat on a gray background.
+Instead of this, new data was generated for the sake of this experiment. This allows for a wider range of data to be created and manipulated to help the system learn more color combinations. The data created using Adobe Illustrator. A background was chosen and then a foreground image was drawn. The colors of the background and foreground were tweaked until a red-green color blind person started having trouble distinguishing between the two. Figure \ref{fig:data1} shows pink sailboat on a gray background.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.25\textwidth]{img/rgb3}
+	\includegraphics[width=0.25\textwidth]{img/data2.png}
 	\caption{A sample data point.}
 	\label{fig:data1}
 \end{figure}
@@ -110,6 +111,25 @@ Instead of this, new data was generated for the sake of this experiment. This al
 For a color blind person (particularly red-green color blind), it may be very difficult to discriminate between the background and foreground. This process will be continued to create a plethora of color combinations such as blue-purple, brown-red, orange-yellow, red-green, etc. These color combinations will then be altered and repeated. For example, dark blue and dark purple will be used in one image a lighter tint of each color will be used in another.
 
 Issues with the devised data creation system will be explored in the Future Improvements section.
+
+\subsubsection{Image Translation}
+The image data needs to be represented in a more quantitative format while still maintaining the information stored in the picture. Namely, the infomration to retain is the color and location of each pixel. Thus, the x and y position will be stored as well as the blue, green, and red values for each pixel. Table \ref{table:1} shows a few rows of the data table representing the sailboat image from figure \ref{fig:data1}. 
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{ c c c c c}
+		x & y & B & G & R \\\hline 
+		0 & 0 & 205 & 205 & 205 \\  
+		0 & 0 & 205 & 205 & 205 \\
+		0 & 0 & 205 & 205 & 205 \\    
+		&  & \vdots &  &  \\ 
+		57 & 116 & 217 & 184 &233\\
+		&  & \vdots &  &  \\ 
+		0 & 0 & 205 & 205 & 205 \\		
+	\end{tabular}
+	\caption{Image representation of sail boat picture}
+	\label{table:1}
+\end{table}
 
 \subsection{Color Detection}
 Unsupervised learning algorithms including pattern recognition will be used to solve this problem. Differences in color could be detected in each image. A neural network will be used to find relationships between these problem colors.
@@ -160,11 +180,7 @@ After the system has learned with a more inclusive data set, the users could als
 	\item
 		\href{https://www.technologyreview.com/s/415339/color-blind-monkeys-get-full-color-vision/}{MIT Technology Review of Color Blind Monkey Gene Therapy}
 		
-	\item
-		\href{https://arxiv.org/abs/1711.10662}{An Adaptive Fuzzy-Based System to Simulate, Quantify and Compensate Color Blindness}
-		
-	\item
-		\href{https://pdfs.semanticscholar.org/e9e7/d61430c6438fc52031111e48f1224e14fa5a.pdf}{COLORIZATION OF GRAYSCALE IMAGES: AN OVERVIEW}
+
 
 \end{enumerate}
 

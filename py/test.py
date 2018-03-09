@@ -9,9 +9,9 @@ from plotly.offline import iplot
 import cv2
 
 # open image
-img = cv2.imread('../img_data/data1.png')
+img = cv2.imread('../img_data/data2.png')
 
-df = pd.read_csv('../img_data/data1.csv')
+df = pd.read_csv('../img_data/data2.csv')
 
 # fit on just BGR values (not x and y)
 X = df.iloc[:, 2:]
