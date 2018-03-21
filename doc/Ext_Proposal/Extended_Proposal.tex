@@ -36,12 +36,12 @@
 \pagestyle{fancy}
 \rhead{Jimmy Hickey}
 
-\lhead{Intial Proposal}
+\lhead{Progress Report II}
 
 
 %opening
 \title{
-Computer Corrected Color Blindness: Extended Proposal
+Computer Corrected Color Blindness: Progress Report II
 }
 \author{Jimmy Hickey}
 
@@ -52,7 +52,8 @@ Computer Corrected Color Blindness: Extended Proposal
 \doublespacing
 
 \begin{abstract}
-Many people suffer from color deficient vision; though they learn to cope, they still have many issues distinguishing between colors. In this paper, I propose a combination of computer vision and machine learning algorithms that can help eliminate some of the problems faced by color blind individuals. Through the methods such as edge detection and color recognition, this system will transform a given image into a more color blind friendly version.
+Many people suffer from color deficient vision; though they learn to cope, they still have many issues distinguishing between colors. In this research, I propose a combination of machine learning algorithms that can help eliminate some of the problems faced by these individuals. As a prototype, specialized data with intentional color blind issues is generated, transformed, and used to train the system. The colors in these images are then segmented using k-means clustering. A supervised neural network is trained to predict these clusters and applied to other images. The image will then be analyzed and corrected if neighboring clusters are found to be conflicting. After correcting, the image will be more color blind friendly.
+
 \end{abstract}
 
 \section{Introduction}
@@ -215,6 +216,20 @@ I also need to further investigate what to do with the clusters after they are f
 I have not yet determined how I am going achieve non-destructive color correction. I am currently learning towards drawing a border between two complementary clusters. However, I do not know how to find the border between these. I do not yet have the knowledge of graphics required to go through the pixels and compare them efficiently. I do not think this will be too difficult, but I think devising a solution to this problem will take a lot of time. 
 
 My current plan is to go through each pixel, check its cluster and compare that to the clutsers of the pixels surrounding it. If a neighbor is found to be in a complementary cluster, then the pixel will be changed to black (i.e. part of the border). Its primary cluster will not be changed so that its neighbors are not unecessarily changed. This primitive approach does not seem computationally efficient. It would take width$\times$height$\times 4$ comparisons for each image. The test images that I have created are 300 by 300, which would require 360000 comparisons. I have not researched this area yet, but I hope to find a more efficient algorithm for iterating through my data.
+
+\section{Progress Report Update}
+
+With advisement from Dr. Deppa from the Statistics department, I have devised a way to reduce over fitting. Currently, the background of my images are a solid color and the foreground are slightly fuzzy around the edges. This will result in a cluster of entirely one color (i.e. the background) and one of mostly one color, but some variety due to the edge fuzz. Training a clustering algorithm on this data will work for a test image, but will not cross validate nor test well. For a pixel to be in the first cluster, it will have to be a very specific color.
+
+To combat this, I am adding normal noise to the colors of my pixels. This will add some variety to each pixel, incurring the fuzziness desired to help reduce the over fitting. 
+
+I am still looking into how I will stack the data. Stacking allows for all the data to be analyzed at once. This would be convenient for an over night training session and to train the clusters all together. Thus, I would have consistent clusters across all of my data. This will allow for a more holistic approach to training my final network. For example, all of my blues will be in the same cluster, rather than in their own clusters by image. However, it will then be harder to find complementary clusters.
+
+One idea that I am playing with is adding an Image ID field to the data. Then the clusters in two images are known to be complementary, but the data can still be stacked. 
+
+I am looking into simple RGB scaling to convert neighboring, conflicting clusters instead of drawing an edge. 
+
+A good final test for the system (Data Analysis) would be to send some legitimate Ishihara samples through the trained network to see if they are properly clustered and dealt with.
 
 \section{References}
 \singlespacing
