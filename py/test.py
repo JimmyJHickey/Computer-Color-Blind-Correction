@@ -9,9 +9,8 @@ import cv2
 # def is_border(x, y, cluster, comp_cluster):
 
 
-
 # open image
-data_name = "data1"
+data_name = "data4"
 img = cv2.imread('../img_data/' + data_name + '.png')
 
 df = pd.read_csv('../img_data/' + data_name + '.csv')
@@ -36,4 +35,4 @@ for i in range(df.shape[0]):
         img[int(df.iloc[i]["x"])][int(df.iloc[i]['y'])] = [df.iloc[i]['B'], new_G, new_R]
 
 
-cv2.imwrite('testtest.png', img)
+cv2.imwrite(data_name+'_test.png', img)
