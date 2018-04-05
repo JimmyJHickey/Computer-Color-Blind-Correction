@@ -16,8 +16,9 @@ def noise_with_bounds(data, mean, sd):
 
 
 # open image
-data_name = "data4"
-img = cv2.imread('../img_data/' + data_name + '.png')
+data_name = "noise_data2"
+# img = cv2.imread('../img_data/' + data_name + '.png')
+img = cv2.imread(data_name + ".png")
 width = img.shape[0]
 height = img.shape[1]
 
