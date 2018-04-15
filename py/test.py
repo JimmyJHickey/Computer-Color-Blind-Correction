@@ -10,27 +10,33 @@ import cv2
 
 
 # open image
-data_name = "noise_data2"
+data_name = "noise_data4"
 # img = cv2.imread('../img_data/' + data_name + '.png')
-img = cv2.imread('noise_data2.png')
+img = cv2.imread(data_name + '.png')
 width = img.shape[0]
 height = img.shape[1]
 
 df = pd.read_csv('../img_data/' + data_name + '.csv')
+# df = pd.read_csv('../img_data/heart.csv')
+
 
 # fit on just BGR values (not x and y)
 X = df.iloc[:, 2:]
 df["cluster"] = KMeans(n_clusters=2).fit_predict(X)
+
+
+
+
 print(pd.DataFrame.head(df))
 print(height)
 
 # for i in range(df.shape[0]):
 #     if df.iloc[i]["cluster"] == 1:
-#     #     img[int(df.iloc[i]["x"])][int(df.iloc[i]['y'])] = [255, 255, 255]
-#     # elif df.iloc[i]["cluster"] == 0:
-#     #     img[int(df.iloc[i]["x"])][int(df.iloc[i]['y'])] = [0, 0, 0]
-#
-#
+# #         img[int(df.iloc[i]["x"])][int(df.iloc[i]['y'])] = [255, 255, 255]
+# #     elif df.iloc[i]["cluster"] == 0:
+# #         img[int(df.iloc[i]["x"])][int(df.iloc[i]['y'])] = [0, 0, 0]
+# #
+# #
 #         # VERY primitive image correction
 #         # Just add more red
 #         # and subtract some green
@@ -41,8 +47,8 @@ print(height)
 #         new_G = 0 if G - 10 < 0 else G - 10
 #         x = df.iloc[i]["x"]
 #         img[int(df.iloc[i]["x"])][int(df.iloc[i]['y'])] = [df.iloc[i]['B'], new_G, new_R]
-
-print("x: %d \t\t y: %d" % (df.iloc[-1]['x'], df.iloc[-1]['y']))
+#
+# print("x: %d \t\t y: %d" % (df.iloc[-1]['x'], df.iloc[-1]['y']))
 
 
 # check if bordering different cluster

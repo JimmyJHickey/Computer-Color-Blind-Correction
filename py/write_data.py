@@ -16,15 +16,15 @@ def noise_with_bounds(data, mean, sd):
 
 
 # open image
-data_name = "noise_data2"
-# img = cv2.imread('../img_data/' + data_name + '.png')
-img = cv2.imread(data_name + ".png")
+data_name = "data4"
+img = cv2.imread('../img_data/' + data_name + '.png')
+# img = cv2.imread(data_name + ".png")
 width = img.shape[0]
 height = img.shape[1]
 
 
 # write to CSV
-with open("../img_data/" + data_name + ".csv", 'w+', newline='') as csv_file:
+with open("../img_data/noise_" + data_name + ".csv", 'w+', newline='') as csv_file:
     writer = csv.writer(csv_file, delimiter=',')
     writer.writerow(['x', 'y', 'B', 'G', 'R'])
     for i in range(width):
@@ -38,3 +38,16 @@ with open("../img_data/" + data_name + ".csv", 'w+', newline='') as csv_file:
             img[i][j] = [B, G, R]
 
 cv2.imwrite('noise_' + data_name + '.png', img)
+
+
+# with open("../img_data/" + data_name + ".csv", 'w+', newline='') as csv_file:
+#     writer = csv.writer(csv_file, delimiter=',')
+#     writer.writerow(['x', 'y', 'B', 'G', 'R'])
+#     for i in range(width):
+#         for j in range(height):
+#
+#             B = img[i, j, 0]
+#             G = img[i, j, 1]
+#             R = img[i, j, 2]
+#             writer.writerow([i, j, B, G, R])
+#             img[i][j] = [B, G, R]
