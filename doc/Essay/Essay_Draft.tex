@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 
 % Margins
-\usepackage[letterpaper, top=1in, bottom=1in, left=.5in, right=.5in]{geometry}
+\usepackage[letterpaper, top=1in, bottom=1in, left=.75in, right=.75in]{geometry}
 
 % For prettier tables
 \usepackage{array}
@@ -18,11 +18,14 @@
 \lstset{ mathescape }
 \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
 
+\usepackage{multicol}
+\setlength{\columnsep}{.83cm}
+
 \usepackage{hyperref}
 
 % Change Font
-\usepackage[sfdefault]{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif
-\usepackage[T1]{fontenc}
+%\usepackage[sfdefault]{roboto}  %% Option 'sfdefault' only if the base font of the document is to be sans serif
+%\usepackage[T1]{fontenc}
 
 % For double spacing
 \usepackage{setspace}
@@ -31,30 +34,35 @@
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 
-\pagenumbering{arabic}
+\pagenumbering{gobble}
 
-\pagestyle{fancy}
-\rhead{Jimmy Hickey}
-
-\lhead{Draft II}
+%\pagestyle{fancy}
+%\rhead{Jimmy Hickey}
+%
+%\lhead{Draft II}
 
 
 %opening
 \title{
-Machine Learning Algorithms to Correct Images to Help the Color Blind: Draft II
+Machine Learning Algorithms to Correct Images to Help the Color Blind
 }
-\author{Jimmy Hickey}
+\author{Jimmy Hickey\\ Winona State University \\ jhickey14@winona.edu}
 
 
 
 \begin{document}
 \maketitle
-\doublespacing
+
+\begin{multicols}{2}
+
 
 \begin{abstract}
 Many people suffer from color deficient vision; though they learn to cope, they still have many issues distinguishing between colors. In this research, machine learning algorithms are combinted to help to eliminate some of the problems faced by these individuals. As a prototype, specialized data with intentional color blind issues is generated, transformed, and used to train the system. The colors in these images are then segmented using k-means clustering. The image is then analyzed and corrected if neighboring clusters are found to be conflicting. After correcting, the image is more color blind friendly. Omitted from the prototype is a supervised neural network that will be trained to predict these clusters, allowing this process to be applied on any image.
 
 \end{abstract}
+
+\section*{Keywords}
+Computer Vision, Machine Learning, Accessibility, Color Correction
 
 \section{Introduction}
 
@@ -67,18 +75,18 @@ There is experimental gene therapy that has produced promising results in animal
 
 The burgeoning field of computer vision lends itself well to this problem. Much work has been done in the area of feature recognition. Projects like Google's Deep Dream and work in robotic vision are some of the wide applications of computer vision. Computers' abilities to analyze images is greatly enhancing. These methods can be used as the small, cheap fix to some color blind issues. A first step would be to examine images.
 
-Instead of recognizing complex features, a machine needs only to examine the colors in an image. With appropriate knowledge of the problem domain, it should be able to diagnose whether there is areas of the image that may cause issues for the color blind. For example, given a set of color blind tests, it would be able to tell which slides a color blind person would have trouble with. This process can then be incrementally furthered. The system can
+Instead of recognizing complex features, a machine needs only to examine the colors in an image. With appropriate knowledge of the problem domain, it should be able to diagnose whether there is areas of the image that may cause issues for the color blind. For example, given a set of color blind tests, it would be able to tell which slides a color blind person would have trouble with. This process can then be incrementally furthered. The system can:
 
-\singlespacing
+
 \begin{enumerate}
 	\item mark all problem areas.
 	\item fix the problem areas without losing too much of the context of the image.
 	\item perform the preceding actions on a video.
 	\item perform the preceding actions on a live video feed.
 \end{enumerate}
-\doublespacing
 
-For the scope of this project, the first and second object will be addressed. Unlike the glasses, the machine is not dealing with the light itself, but how it is displayed. Thus, this could be easily expanded to support all of the common types of color blindness. 
+
+For the scope of this project, the first and second objectives will be addressed. Unlike the glasses, the machine is not dealing with the light itself, but how it is displayed. Thus, this could be easily expanded to support all of the common types of color blindness. 
 
 The overall goal of this research is to create a prototype to prove that a system can be trained to identify and resolve areas of potential color blind confusion in images.
 
@@ -94,7 +102,7 @@ Initially, it was planned to use standard Ishihara Color Test plates, such as th
 	\includegraphics[width=0.25\textwidth]{img/Ishihara}
 	\caption{A red-green Ishihara color blind plate.}
 	\captionsetup{font={footnotesize,bf,it}}
-	\caption*{\href{https://en.wikipedia.org/wiki/Ishihara\_test}{https://en.wikipedia.org/wiki/Ishihara\_test}}
+	\caption*{\href{https://en.dia.org/wiki/Ishihara\_test}{https://en.dia.org/wiki/Ishihara\_test}}
 	\label{fig:ishi}
 \end{figure}
 
@@ -130,22 +138,22 @@ The image data needs to be represented in a more quantitative format while still
 
 \end{table}
 
-With the primitive creation method used to form this data, some editing needs to be done yet. One may notice that all of the background pixels will have the exact same red, green, and blue values. At that, the foreground also only include a narrow range of colors. This is not an issue immediately, but looking forward to the color detection and generalization methods that will be used, this will cause problems. These issues and solutions to them will be expounded upon in future sections.
+With the primitive creation method used to form this data, some editing needs to be done yet. One may notice that all of the background pixels may have the exact same red, green, and blue values. At that, the foreground also only include a narrow range of colors. This is not an issue immediately, but looking forward to the color detection and generalization methods that are be used, this will cause problems. These issues and solutions to them are be expounded upon in future sections.
 
 \subsection{Color Detection}
 \subsubsection{k-means}
-An unsupervised learning algorithm for pattern recognition will be used to segment the image. Differences in color are detected in each image. K-means clustering \cite{kmeans} is being used to find distinct trends in the pixel data. Since each image is created to depict a combination of two colors, the k-means algorithm is instructed to dichotomize the data.
+An unsupervised learning algorithm for pattern recognition is used to segment the image. Differences in color are detected in each image. K-means clustering \cite{kmeans} is being used to find distinct trends in the pixel data. Since each image is created to depict a combination of two colors, the k-means algorithm is instructed to dichotomize the data.
 
 The Python SKLearn package was used to implement k-means clustering. The algorithm works as follows:
-\singlespacing
+
 \begin{enumerate}
-\item Determine how many clusters the data will be separated into. For this project, two clusters will be used.
+\item Determine how many clusters the data will be separated into. For this project, two clusters are be used.
 \item Randomly select a mean for each cluster.
 \item Classify each piece of data according to each mean.
 \item Use these new classifications to recompute the mean of each cluster.
 \item Repeat 3-4 until the clusters converge (that is, they do not change more than a threshold between iterations).
 \end{enumerate}
-\doublespacing
+
 Using this algorithm on the sail boat image shown in figure \ref{fig:data1} successfully bisects the data into clusters. The clusters have been changed to black and white to clearly illustrate the difference:
 
 \begin{figure}[H]
@@ -155,13 +163,13 @@ Using this algorithm on the sail boat image shown in figure \ref{fig:data1} succ
 	\label{fig:kmeans1}
 \end{figure}
 
-It is expected that the system will identify issues with the red and green more so than the blue since it will be given data for a red-green color blind person. Though k-means is sensitive to outliers, since multiple images will be created for each color combination, local maxima convergence will, hopefully, be avoided. 
+It is expected that the system will identify issues with the red and green more so than the blue since it will be given data for a red-green color blind person. Though k-means is sensitive to outliers, since multiple images are be created for each color combination, local maxima convergence will, hopefully, be avoided. 
 
 \subsection{Generalization}
 Identifying the clusters in images is but the first step in the detection process. Next, we want to generalize these clusters. The first step is to generalize within each image and then across multiple images.
 
 \subsubsection{Adding Background Noise}
-As previously mentioned, each image's foreground and background are very distinct, but in fact only have a few different RGB in each of them. For example, the background cluster of the sailboard image will contain only (205, 205, 205) values in the RGB columns. If a single pixel's colors were changed, the k-means algorithm may have a hard time classifying it. However, if the colors were less uniform, the k-means algorithm could train itself on more varied, yet still distinct data. Thus random normal noise is added to each pixel's B, G, and R values. The parameters for this noise were arbitrarily chosen to be a mean of 0 and a standard deviation of 3. This these changes to the data, the image that the algorithm trains on looks as follows:
+As previously mentioned, each image's foreground and background are very distinct, but in fact only have a few different RGB in each of them. For example, the background cluster of the sailboard image contains only (205, 205, 205) values in the RGB columns. If a single pixel's colors were changed, the k-means algorithm may have a hard time classifying it. However, if the colors were less uniform, the k-means algorithm could train itself on more varied, yet still distinct data. Thus random normal noise is added to each pixel's B, G, and R values. The parameters for this noise were arbitrarily chosen to be a mean of 0 and a standard deviation of 3. This these changes to the data, the image that the algorithm trains on looks as follows:
 
 \begin{figure}[H]
 \centering
@@ -220,11 +228,13 @@ Another possible correction procedure is to change the colors or contrast of the
 \section{Results Analysis}
 
 
-The output of this system will be the corrected images. For the scope of this research, wide, comprehensive results will not be provided. Only one person will evaluate whether the objects are easier to distinguish; and indeed they are. Peers were consulted  as to how destructive the algorithm is, that is how much it alters the colors. A proper analysis would involve both groups of color blind and non color blind subjects. They would examine the image before and after processing and comment on the effectiveness and destructiveness. 
+The output of this system is the corrected images. For the scope of this research, wide, comprehensive results are not provided. Only one person evaluates whether the objects are easier to distinguish; and indeed they are. Peers were consulted  as to how destructive the algorithm is, that is how much it alters the colors. A proper analysis would involve both groups of color blind and non color blind subjects. They would examine the image before and after processing and comment on the effectiveness and destructiveness. 
 
 \section{Conclusion}
 On the whole, this research has outlined the prototype to a system for assisting people with color blindness. Images are ubiquitous on the Internet. This system provides a method for those affected to enjoy and appreciate this information as anyone else could. An ensemble of machine learning mechanisms provide color clustering; these clusters are then used to determine if there will be any potential confusion in the image and corrects accordingly. Importantly, this correction process does not destroy the image, so the message being communicated is not lost to the viewer. The process can be followed in full through the in figure \ref{fig:process}. Further additions have been suggested throughout this paper, but there are yet more that would bring this research to greater heights.
+\end{multicols}
 
+\pagebreak
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{img/process.png}
@@ -232,7 +242,8 @@ On the whole, this research has outlined the prototype to a system for assisting
 	\label{fig:process}
 \end{figure}
 
-
+\pagebreak
+\begin{multicols}{2}
 
 %\section{To do}
 %This project still has a long way to go before it is complete.
@@ -289,10 +300,10 @@ Any good software is going to include some sort of user testing. In this case, t
 After the system has learned with a more inclusive data set, the users could also help judge the color correction. They could be given before and after pictures; offering their input as to whether the system actually accomplished its goal of helping them distinguish the colors in the image. Additionally, a non-color blind group of people could be brought in, again given the before and after pictures. These participants would be able to determine how drastic a change the system made to the image. Combining feedback from these two groups of people would help reach an equilibrium between making an image more accessible while not altering its meaning.
 
 
-\pagebreak
 \section{References}
 \bibliography{bibliography}{}
 \bibliographystyle{plain}
+\end{multicols}
 
 
 \end{document}
