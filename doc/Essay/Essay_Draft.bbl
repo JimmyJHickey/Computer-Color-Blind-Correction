@@ -1,23 +1,95 @@
-\begin{thebibliography}{1}
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\bibitem{MITGlasses}
-Ryan Cross.
-\newblock How enchroma’s glasses correct color-blindness, June 2016.
+\begin{thebibliography}{5}
 
-\bibitem{enchroma}
-enchroma.
-\newblock Frequently asked questions.
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
 
-\bibitem{NEI}
-National~Eye Institute.
-\newblock Facts about color blindness, February 2015.
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
 
-\bibitem{kmeans}
-Thales~Sehn Körting.
-\newblock How k-means algorithm works, July 2013.
+\bibitem[\protect\citeauthoryear{Cross}{Cross}{2016}]%
+        {MITGlasses}
+\bibfield{author}{\bibinfo{person}{Ryan Cross}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \bibinfo{title}{How EnChroma’s Glasses Correct Color-Blindness}.
+\newblock   (\bibinfo{date}{June} \bibinfo{year}{2016}).
+\newblock
+\showURL{%
+\url{https://www.technologyreview.com/s/601782/how-enchromas-glasses-correct-color-blindness}}
 
-\bibitem{MITMonkey}
-Emily Singer.
-\newblock Color-blind monkeys get full color vision, September 2009.
+
+\bibitem[\protect\citeauthoryear{enchroma}{enchroma}{[n. d.]}]%
+        {enchroma}
+\bibfield{author}{\bibinfo{person}{enchroma}.} \bibinfo{year}{[n.
+  d.]}\natexlab{}.
+\newblock \bibinfo{title}{Frequently Asked Questions}.
+\newblock   (\bibinfo{year}{[n. d.]}).
+\newblock
+\showURL{%
+\url{http://enchroma.com/contact-us/}}
+
+
+\bibitem[\protect\citeauthoryear{Institute}{Institute}{2015}]%
+        {NEI}
+\bibfield{author}{\bibinfo{person}{National~Eye Institute}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \bibinfo{title}{Facts About Color Blindness}.
+\newblock   (\bibinfo{date}{February} \bibinfo{year}{2015}).
+\newblock
+\showURL{%
+\url{https://nei.nih.gov/health/color_blindness/facts_about}}
+
+
+\bibitem[\protect\citeauthoryear{Körting}{Körting}{2013}]%
+        {kmeans}
+\bibfield{author}{\bibinfo{person}{Thales~Sehn Körting}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \bibinfo{title}{How K-Means algorithm works}.
+\newblock   (\bibinfo{date}{July} \bibinfo{year}{2013}).
+\newblock
+\showURL{%
+\url{https://www.youtube.com/watch?v=IuRb3y8qKX4}}
+
+
+\bibitem[\protect\citeauthoryear{Singer}{Singer}{2009}]%
+        {MITMonkey}
+\bibfield{author}{\bibinfo{person}{Emily Singer}.}
+  \bibinfo{year}{2009}\natexlab{}.
+\newblock \bibinfo{title}{Color-Blind Monkeys Get Full Color Vision}.
+\newblock   (\bibinfo{date}{September} \bibinfo{year}{2009}).
+\newblock
+\showURL{%
+\url{https://www.technologyreview.com/s/415339/color-blind-monkeys-get-full-color-vision/}}
+
 
 \end{thebibliography}

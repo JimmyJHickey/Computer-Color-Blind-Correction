@@ -1,57 +1,28 @@
-This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is 8-bit Big BibTeX version 0.99d
+Implementation:  C for Unix
+Release version: 3.71 (18 mar 2013)
+
+The 8-bit codepage and sorting file: 88591lat.csf
 The top-level auxiliary file: Essay_Draft.aux
-The style file: plain.bst
+The style file: ACM-Reference-Format.bst
+Reallocated glb_str_ptr (elt_size=8) to 10 items from 0.
+Reallocated global_strs (elt_size=20001) to 10 items from 0.
+Reallocated glb_str_end (elt_size=8) to 10 items from 0.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
 Database file #1: bibliography.bib
-Warning--entry type for "NEI" isn't style-file defined
---line 1 of file bibliography.bib
-Warning--entry type for "MITGlasses" isn't style-file defined
---line 9 of file bibliography.bib
-Warning--entry type for "enchroma" isn't style-file defined
---line 20 of file bibliography.bib
-Warning--entry type for "MITMonkey" isn't style-file defined
---line 26 of file bibliography.bib
-Warning--entry type for "kmeans" isn't style-file defined
---line 36 of file bibliography.bib
-You've used 5 entries,
-            2118 wiz_defined-function locations,
-            519 strings with 4335 characters,
-and the built_in function-call counts, 1009 in all, are:
-= -- 84
-> -- 35
-< -- 0
-+ -- 15
-- -- 10
-* -- 39
-:= -- 168
-add.period$ -- 10
-call.type$ -- 5
-change.case$ -- 20
-chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 35
-empty$ -- 111
-format.name$ -- 10
-if$ -- 215
-int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 0
-newline$ -- 23
-num.names$ -- 10
-pop$ -- 44
-preamble$ -- 1
-purify$ -- 15
-quote$ -- 0
-skip$ -- 42
-stack$ -- 0
-substring$ -- 25
-swap$ -- 5
-text.length$ -- 0
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 20
-warning$ -- 0
-while$ -- 10
-width$ -- 6
-write$ -- 41
-(There were 5 warnings)
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=8) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=8) to 20 items from 10.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Warning--empty year in enchroma
+
+Here's how much of BibTeX's memory you used:
+ Cites:                 5 out of 750
+ Fields:              146 out of 5000
+ Hash table:        99417 out of 100000
+ Strings:            1342 out of 100000
+ Free string pool:  15960 out of 65000
+ Wizard functions:   5795 out of 6000
+(There was 1 warning)
